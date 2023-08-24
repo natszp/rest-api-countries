@@ -1,0 +1,8 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 2.5%;
+    /* margin: top right bottom left */
+    /* margin: top-bottom right-left */
+
+}

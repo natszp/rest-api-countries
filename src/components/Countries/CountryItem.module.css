@@ -1,0 +1,19 @@
+.card {
+    border-radius: 8px;
+    box-shadow: 0 0 12px -5px rgb(0 0 0 / 20%);
+    margin-top: 100px;
+    margin-right: 100px;
+    margin-left: 100px;
+
+}
+
+.name {
+    padding-top: 5%;
+    margin-bottom: 5%;
+    font-weight: large;
+
+}
+
+.other-info {
+    font-weight: 300;
+}
