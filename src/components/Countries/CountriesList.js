@@ -1,23 +1,32 @@
 import CountryItem from "./CountryItem"
-import classes from './CountriesList.module.css'
+
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+
 
 const CountriesList = ({countries}) => {
 
-   console.log(countries)
 
    return (
-         <div className={classes.container}>
-            <div>{countries.map(country =>
-               <CountryItem
+      <Box>
+        <Grid container spacing={1}>
+        {countries.map(country =>
+          <Grid item xs={3}>
+            <CountryItem
                   key={country.name.common}
                   flag={country.flags.png}
                   name={country.name.common}
                   population={country.population}
                   region={country.region}
-                  capital={country.capital} />)}
-            </div>
-         </div>
-   )
+                  capital={country.capital} />
+          </Grid>)}
+         
+        </Grid>
+      </Box>
+    );
+
+
 }
 
 export default CountriesList

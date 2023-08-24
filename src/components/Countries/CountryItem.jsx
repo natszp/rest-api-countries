@@ -21,7 +21,8 @@ const CountryItem = ({ name, population, region, capital, flag }) => {
     }
 
     return (
-        <Card className={classes.card}>
+    
+        <Card sx={{width: 300}} className={classes.card}>
             <CardMedia
                 sx={{ height: 140 }}
                 image={flag}
@@ -39,6 +40,7 @@ const CountryItem = ({ name, population, region, capital, flag }) => {
                 </div>
             </CardContent>
         </Card>
+    
     );
 
 }
