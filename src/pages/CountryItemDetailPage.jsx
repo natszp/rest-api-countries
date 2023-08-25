@@ -1,14 +1,15 @@
 
-import { json, useParams, useRouteLoaderData } from "react-router-dom"
+import { json, useParams, useLoaderData } from "react-router-dom"
 import CountryItemDetails from "../components/Countries/CountryItemDetails"
 
 const CountryItemDetailPage = () => {
-    
-
+    const data = useLoaderData('detailPage')
+    //ok
+    console.log('data',data)
 
     return (
         <>
-            <CountryItemDetails />
+            <CountryItemDetails country={data}/>
 
         </>
     )

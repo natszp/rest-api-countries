@@ -1,66 +1,67 @@
-import { Link, json, useParams, useRouteLoaderData } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { Button } from "@material-ui/core";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import InfoEntry from "./InfoEntry";
 import classes from './CountryItemDetails.module.css';
 
-const CountryItemDetails = () => {
-
-    const params = useParams()
-    //nie działa poniżej 
-    // data = useRouteLoaderData('detailPage')
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 
 
-    console.log(params)
+const CountryItemDetails = ({ country }) => {
+    country = country[0]
+
 
     return (
-        <>
-            <Button variant="outlined" className={classes.button} startIcon={<ArrowBackIcon />}><Link to="/">Back</Link></Button>
-            <section className={classes['details-content']}>
-                <div className={classes['flag']}>flaga
-                </div>
-                <div className={classes['information']}>
-                    <div className={classes['information--box']}>
-                        <div className={classes['information--main']}>
-                            <InfoEntry
-                                title='Name'
-                                information={params.name}
-                            />
-                            <InfoEntry
-                                title='Population'
-                            // information={params.population.toLocaleString('en-US')}
-                            />
-                            <InfoEntry title='Region' information={params.region} />
-                            <InfoEntry
-                                title='Sub Region'
-                            //information={params.subregion}
-                            />
-                            <InfoEntry
-                                title='Capital'
-                            //  information={params.capital}
-                            />
-                        </div>
-                    </div>
-                    <div className={classes['information--additional']}>
-                        <InfoEntry
-                            title='Top Level Domain'
-                        //information={params.tld[0]}
-                        />
-                        <InfoEntry
-                            title='Currencies'
+        <Box sx={{ flexGrow: 1 }} >
+            <Grid>
+                <Button variant="outlined" className={classes.button} startIcon={<ArrowBackIcon />}><Link to="/">Back</Link></Button>
+            </Grid>
 
-                        />
-                        <InfoEntry
-                            title='Languages'
+            <Grid container spacing={1} className={classes.container}>
+                <Grid item xs={4}>
+                    <div className={classes.flag}><img src={country.flags.png} alt="flag" /></div>
+                </Grid>
+                <Grid item xs={4}>
+                    <InfoEntry
+                        title='Name'
+                        information={country.name.common}
+                    />
+                    <InfoEntry
+                        title='Population'
+                        information={country.population.toLocaleString('en-US')}
+                    />
+                    <InfoEntry title='Region' information={country.region} />
+                    <InfoEntry
+                        title='Sub Region'
+                        information={country.subregion}
+                    />
+                    <InfoEntry
+                        title='Capital'
+                        information={country.capital}
+                    />
+                </Grid>
+                <Grid item xs={4}>
+                    <InfoEntry
+                        title='Top Level Domain'
+                        information={country.tld[0]}
+                    />
+                    <InfoEntry
+                        title='Currencies'
+                        
+                    />
+                    <InfoEntry
+                        title='Languages' />
 
-                        />
+                </Grid>
+                <Grid item xs={8} className={classes.borders}>
+                    <div>Border countries:</div>
+                </Grid>
+            </Grid>
+        </Box>
+    );
 
-                    </div>
-                </div>
-            </section>
-        </>
-
-    )
 }
 
 export default CountryItemDetails;
