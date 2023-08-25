@@ -1,4 +1,4 @@
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import InfoEntry from "./InfoEntry";
@@ -10,7 +10,31 @@ import Grid from '@mui/material/Grid';
 
 
 const CountryItemDetails = ({ country }) => {
+
     country = country[0]
+
+    let currenciesArray;
+    let currenciesName;
+
+    currenciesArray = Object.keys(country.currencies).map((key) => [
+        key,
+        country.currencies[key],
+    ]);
+
+    currenciesName = currenciesArray[0][1].name;
+
+
+    let languagesArray;
+    let languagesName;
+
+    languagesArray = Object.keys(country.languages).map((key) => [
+        key,
+        country.languages[key],
+    ]);
+
+    languagesName = languagesArray[0][1];
+
+
 
 
     return (
@@ -49,14 +73,16 @@ const CountryItemDetails = ({ country }) => {
                     />
                     <InfoEntry
                         title='Currencies'
-                        
+                        information={currenciesName}
+
                     />
                     <InfoEntry
-                        title='Languages' />
-
+                        title='Languages'
+                        information={languagesName}
+                    />
                 </Grid>
                 <Grid item xs={8} className={classes.borders}>
-                    <div>Border countries:</div>
+                   
                 </Grid>
             </Grid>
         </Box>
@@ -68,9 +94,3 @@ export default CountryItemDetails;
 
 
 
-/*
-
-
-   <div>Currencies: {currencies[1].map((currency)=> <p>{currency.name}</p>)}</div>
-                    <div>Languages: {languages.map((language)=> <p>{language.name}</p>)}</div>
-                    */
