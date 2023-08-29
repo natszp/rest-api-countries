@@ -13,15 +13,9 @@ const CountryItemDetails = ({ country }) => {
 
     country = country[0]
 
-    let currenciesArray;
-    let currenciesName;
-
-    currenciesArray = Object.keys(country.currencies).map((key) => [
-        key,
-        country.currencies[key],
-    ]);
-
-    currenciesName = currenciesArray[0][1].name;
+    // let currenciesName;
+    //TODO: sprawdzić za pomocą values
+    const currenciesName = Object.entries(country.currencies).map(([key,value]) => <span>{value.name} </span>);
 
 
     let languagesArray;
@@ -32,8 +26,7 @@ const CountryItemDetails = ({ country }) => {
         country.languages[key],
     ]);
 
-    languagesName = languagesArray[0][1];
-
+    languagesName = languagesArray.map((element)=><span>{element[1]} </span>)
 
 
 
