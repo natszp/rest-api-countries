@@ -1,14 +1,16 @@
 import { useRef, useState } from 'react';
+
+import classes from './Bar.module.css'
+
+import * as React from 'react';
+import { useTheme} from '@mui/material/styles';
+import { ColorModeContext } from '../../App';
+import ModeNightIcon from '@mui/icons-material/ModeNight';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import classes from './Bar.module.css'
-
-
-import ModeNightIcon from '@mui/icons-material/ModeNight';
-
 
 
 
@@ -17,7 +19,9 @@ const Bar = () => {
     const ref = useRef('bar')
     const toolbar = ref.current
 
+
     const lightModeHandler = () => {
+        colorMode.toggleColorMode()
         setModeState('light');
         document.body.classList.remove(classes['dark-mode'])
         document.body.classList.add(classes['light-mode'])
@@ -27,16 +31,18 @@ const Bar = () => {
     };
 
     const darkModeHandler = () => {
+        colorMode.toggleColorMode()
         setModeState('dark');
         document.body.classList.remove(classes['light-mode'])
         document.body.classList.add(classes['dark-mode'])
         toolbar.classList.remove(classes['light-mode'])
         toolbar.classList.add(classes['dark-mode'])
-     
+
     }
-          
-    // chciałabym napisać to zmienianie klas krócej i bardziej elegancko
-    // nie zmienia się kolor tekstu w elemenatch UI - button, input, select - jak to zrobić?
+
+    const theme = useTheme();
+    const colorMode = React.useContext(ColorModeContext);
+
 
 
     return (

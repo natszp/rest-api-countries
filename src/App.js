@@ -4,19 +4,15 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import Bar from './components/Layout/Bar';
 import RootLayout from './pages/RootLayout'
-import CountryItemDetails from './components/Countries/CountryItemDetails';
 import CountryItemDetailPage from './pages/CountryItemDetailPage';
 import { loader } from './pages/CountryItemDetailPage'
 
 import * as React from 'react';
-import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
-import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-const ColorModeContext = React.createContext({ toggleColorMode: () => { } });
 
+export const ColorModeContext = React.createContext({ toggleColorMode: () => { } });
 
 
 const router = createBrowserRouter([
@@ -36,18 +32,9 @@ const router = createBrowserRouter([
 
 function App() {
 
-  const theme = useTheme();
-  const colorMode = React.useContext(ColorModeContext);
-
   return (
     <>
-      <Box
-
-      >
-        {theme.palette.mode} mode
-        <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
-          {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-        </IconButton>
+      <Box>
         <Bar />
         <RouterProvider router={router} />
       </Box>
