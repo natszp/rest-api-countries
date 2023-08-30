@@ -36,13 +36,14 @@ const CountryItemDetails = ({ country }) => {
 
     let borders;
 
-    if (country.borders !== undefined) {
+   /* if (country.borders !== undefined) {
         borders = country.borders.map((element) =>
             <Button variant="outlined" className={classes['btn-borders']} onClick={borderCountryHandler} key={element}>{element}</Button>)
         return borders
     } else {
         borders = 'No border countries'
     }
+    */
 
 
 
