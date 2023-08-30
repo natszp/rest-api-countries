@@ -1,22 +1,22 @@
-import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Link, useNavigate } from "react-router-dom";
+
 import InfoEntry from "./InfoEntry";
 import classes from './CountryItemDetails.module.css';
 
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-
+import { Button } from "@material-ui/core";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const CountryItemDetails = ({ country }) => {
+    console.log(country)
 
+    const navigate = useNavigate()
     country = country[0]
-
     // let currenciesName;
     //TODO: sprawdzić za pomocą values
-    const currenciesName = Object.entries(country.currencies).map(([key,value]) => <span>{value.name} </span>);
-
+    const currenciesName = Object.entries(country.currencies).map(([key, value]) => <span>{value.name} </span>);
 
     let languagesArray;
     let languagesName;
@@ -26,7 +26,24 @@ const CountryItemDetails = ({ country }) => {
         country.languages[key],
     ]);
 
-    languagesName = languagesArray.map((element)=><span>{element[1]} </span>)
+    languagesName = languagesArray.map((element) => <span>{element[1]} </span>)
+
+
+    const borderCountryHandler = (event) => {
+        console.log(event.target.outerText)
+        navigate(`/${event.target.outerText}`)
+    }
+
+    let borders;
+
+    if (country.borders !== undefined) {
+        borders = country.borders.map((element) =>
+            <Button variant="outlined" className={classes['btn-borders']} onClick={borderCountryHandler} key={element}>{element}</Button>)
+        return borders
+    } else {
+        borders = 'No border countries'
+    }
+
 
 
 
@@ -67,15 +84,16 @@ const CountryItemDetails = ({ country }) => {
                     <InfoEntry
                         title='Currencies'
                         information={currenciesName}
-
                     />
                     <InfoEntry
                         title='Languages'
                         information={languagesName}
                     />
                 </Grid>
-                <Grid item xs={8} className={classes.borders}>
-                   
+                <Grid item xs={8}>
+                    <InfoEntry className={classes.borders}
+                        title='Border countries'
+                        information={borders} />
                 </Grid>
             </Grid>
         </Box>

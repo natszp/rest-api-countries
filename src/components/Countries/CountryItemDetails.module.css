@@ -4,7 +4,11 @@
 }
 
 
-
 .borders {
 	text-align: center;
+	margin-left: 40%;
+}
+
+.btn-borders {
+	margin-left: 2%;
 }
