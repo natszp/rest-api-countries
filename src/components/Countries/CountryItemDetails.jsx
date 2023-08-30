@@ -30,35 +30,32 @@ const CountryItemDetails = ({ country }) => {
 
 
     const borderCountryHandler = (event) => {
-        console.log(event.target.outerText)
         navigate(`/${event.target.outerText}`)
     }
 
     let borders;
 
-   /* if (country.borders !== undefined) {
+    if (country.borders !== undefined) {
         borders = country.borders.map((element) =>
-            <Button variant="outlined" className={classes['btn-borders']} onClick={borderCountryHandler} key={element}>{element}</Button>)
-        return borders
+            <Button variant="outlined" onClick={borderCountryHandler} key={element}>{element}</Button>)
     } else {
-        borders = 'No border countries'
+        borders = ''
     }
-    */
-
-
 
 
     return (
         <Box sx={{ flexGrow: 1 }} >
             <Grid>
-                <Button variant="outlined" className={classes.button} startIcon={<ArrowBackIcon />}><Link to="/">Back</Link></Button>
+                <Grid margin={5}>
+                    <Button variant="outlined" className={classes.button} startIcon={<ArrowBackIcon />}><Link to="/">Back</Link></Button>
+                </Grid>
             </Grid>
 
-            <Grid container spacing={1} className={classes.container}>
-                <Grid item xs={4}>
+            <Grid container spacing={1}>
+                <Grid item xs={4} marginLeft={5}>
                     <div className={classes.flag}><img src={country.flags.png} alt="flag" /></div>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={3}>
                     <InfoEntry
                         title='Name'
                         information={country.name.common}
@@ -91,10 +88,13 @@ const CountryItemDetails = ({ country }) => {
                         information={languagesName}
                     />
                 </Grid>
-                <Grid item xs={8}>
-                    <InfoEntry className={classes.borders}
-                        title='Border countries'
-                        information={borders} />
+
+                <Grid container className={classes['container-borders']}>
+                    <InfoEntry
+                        title='Border countries' />
+                    <Grid item xs={3} margin={1}>
+                        {borders}
+                    </Grid>
                 </Grid>
             </Grid>
         </Box>

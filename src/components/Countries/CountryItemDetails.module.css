@@ -1,14 +1,10 @@
 .flag {
 	width: 300px;
 	height: 200px;
-}
+}	
 
+.container-borders {
+	margin-top: 2%;
+	margin-left: 36%;
 
-.borders {
-	text-align: center;
-	margin-left: 40%;
-}
-
-.btn-borders {
-	margin-left: 2%;
 }
