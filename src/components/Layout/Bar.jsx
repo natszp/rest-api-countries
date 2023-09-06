@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import classes from './Bar.module.css'
 
 import * as React from 'react';
-import { useTheme} from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 import { ColorModeContext } from '../../App';
 import ModeNightIcon from '@mui/icons-material/ModeNight';
 import AppBar from '@mui/material/AppBar';
@@ -16,8 +16,7 @@ import Button from '@mui/material/Button';
 
 const Bar = () => {
     const [modeState, setModeState] = useState('light')
-    const ref = useRef('bar')
-    const toolbar = ref.current
+    const ref = useRef(null)
 
 
     const lightModeHandler = () => {
@@ -25,9 +24,10 @@ const Bar = () => {
         setModeState('light');
         document.body.classList.remove(classes['dark-mode'])
         document.body.classList.add(classes['light-mode'])
-        toolbar.classList.remove(classes['dark-mode'])
-        toolbar.classList.add(classes['light-mode'])
-
+        if(ref.current){
+            ref.current.classList.remove(classes["dark-mode"]);
+            ref.current.classList.add(classes["light-mode"]);
+        }
     };
 
     const darkModeHandler = () => {
@@ -35,12 +35,13 @@ const Bar = () => {
         setModeState('dark');
         document.body.classList.remove(classes['light-mode'])
         document.body.classList.add(classes['dark-mode'])
-        toolbar.classList.remove(classes['light-mode'])
-        toolbar.classList.add(classes['dark-mode'])
-
+        console.log(ref.current, 'in dark mode handler')
+        if (ref.current ) {
+          ref.current.classList.remove(classes["light-mode"]);
+          ref.current.classList.add(classes["dark-mode"]);
+        }
     }
 
-    const theme = useTheme();
     const colorMode = React.useContext(ColorModeContext);
 
 
