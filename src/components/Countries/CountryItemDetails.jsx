@@ -46,8 +46,8 @@ const CountryItemDetails = ({ country }) => {
     return (
         <Box sx={{ flexGrow: 1 }} >
             <Grid>
-                <Grid margin={5}>
-                    <Button variant="outlined" className={classes.button} startIcon={<ArrowBackIcon />}><Link to="/">Back</Link></Button>
+                <Grid margin={5} spacing={2}>
+                    <Button variant="outlined" margin={2} className={classes.button} startIcon={<ArrowBackIcon />}><Link to="/">Back</Link></Button>
                 </Grid>
             </Grid>
 
@@ -92,7 +92,7 @@ const CountryItemDetails = ({ country }) => {
                 <Grid container className={classes['container-borders']}>
                     <InfoEntry
                         title='Border countries' />
-                    <Grid item xs={3} margin={1}>
+                    <Grid container item xs={3} margin={1} gap={1}>
                         {borders}
                     </Grid>
                 </Grid>
